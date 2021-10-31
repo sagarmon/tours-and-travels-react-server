@@ -33,6 +33,30 @@ async function run() {
         });
         //// remove end
 
+
+        ////
+        // POST API
+        app.post('/addaservice', async (req, res) => {
+            const service = req.body
+            console.log('hit the post api', service);
+
+
+            // const service = {
+            //     "name": "New York Cit",
+            //     "description": "New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers.",
+            //     "img": "https://i.ibb.co/DkMC5Hd/ny-city.png"
+            // }
+
+            const result = await servicesCollection.insertOne(service);
+            console.log(result);
+            res.json(result);
+        });
+        ////
+
+
+
+
+
         // GET Single Service
         app.get('/services/:id', async (req, res) => {
             const id = req.params.id;
